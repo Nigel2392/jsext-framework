@@ -1,5 +1,5 @@
-github.com/Nigel2392/jsext v1.3.7-0.20230122210121-5a3041391a47 h1:lHNiSdv0DXnq9EHsbxDofmxKAW9HV31qURwxs/s8PxU=
-github.com/Nigel2392/jsext v1.3.7-0.20230122210121-5a3041391a47/go.mod h1:ixCus25vZDb9kvKdLQCSSH9sDAsT8mnLZk/+FkHJSv4=
+github.com/Nigel2392/jsext v1.3.7-0.20230122210451-e611fa99fc9b h1:YGJqs2/8LmlfaVSJvtZ9Me2zUJkAU9c5Z/1OqTb/8WM=
+github.com/Nigel2392/jsext v1.3.7-0.20230122210451-e611fa99fc9b/go.mod h1:/tdccp1JXRFZ5WKhc2wwSUD6MWWcJSXLzIMbyFWwp1o=
 github.com/philhofer/fwd v1.1.2 h1:bnDivRJ1EWPjUIRXV5KfORO897HTbpFAQddBdE8t7Gw=
 github.com/philhofer/fwd v1.1.2/go.mod h1:qkPdfjR2SIEbspLqpe1tO4n5yICnr2DY7mqEx2tUTP0=
 github.com/tinylib/msgp v1.1.8 h1:FCXC1xanKO4I8plpHGH2P7koL/RzZs12l/+r7vakfm0=
