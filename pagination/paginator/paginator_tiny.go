@@ -6,7 +6,7 @@ package paginator
 import (
 	"fmt"
 
-	"github.com/Nigel2392/jsext-framework/app/tokens"
+	"github.com/Nigel2392/jsext-framework/tokens"
 )
 
 // Paginator does not work with TinyGo.

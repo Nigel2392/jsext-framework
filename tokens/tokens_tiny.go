@@ -13,7 +13,6 @@ import (
 
 // Make an api call to the refresh URL, update both the access and refresh tokens.
 func (t *Token) Update() error {
-	var client = requester.NewAPICl
 	var client = requester.NewAPIClient()
 	var data = map[string]any{
 		t.RefreshTokenVariable: t.RefreshToken,
@@ -117,17 +116,18 @@ func (t *Token) Logout() error {
 	client = client.Post(t.URLs.LogoutURL)
 	client.WithData(map[string]any{
 		t.RefreshTokenVariable: t.RefreshToken,
-	var resp, err = clent.Do()
+	}, requester.JSON)
+	var resp, err = client.Do()
 	if err != nil {
 		return err
 	}
-	vr respMap, ok = decoder.ParseBytes(resp.Body).Value().(map[string]interface{})
+	var respMap, ok = decoder.ParseBytes(resp.Body).Value().(map[string]interface{})
 	if !ok {
-		return rrors.New("could not parse response")
+		return errors.New("could not parse response")
 	}
-	i err, ok := respMap[t.errorMessageName]; ok {
+	if err, ok := respMap[t.errorMessageName]; ok {
 		return errors.New(err.(string))
 	}
-	tReset()
-	return ni
+	t.Reset()
+	return nil
 }

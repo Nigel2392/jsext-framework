@@ -6,7 +6,7 @@ package paginator
 import (
 	"net/http"
 
-	"github.com/Nigel2392/jsext-framework/app/tokens"
+	"github.com/Nigel2392/jsext-framework/tokens"
 	"github.com/Nigel2392/jsext/requester"
 )
 
