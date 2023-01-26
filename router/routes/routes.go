@@ -44,13 +44,22 @@ const (
 
 // Routes to be registered in the router
 type Route struct {
-	Name              string
-	Internal_name     string
-	Path              string
-	Callable          func(v vars.Vars, u *url.URL)
-	RegexUrl          string
+	Name          string
+	Internal_name string
+	Path          string
+
+	// Function to be called when the route is called.
+	Callable func(v vars.Vars, u *url.URL)
+
+	// Function to be called when the route is left.
+	OnLeave func(v vars.Vars, u *url.URL)
+
+	// URL used to match the route.
+	RegexUrl string
+	// Wether to skip the trailing slash.
 	SkipTrailingSlash bool
-	Children          []*Route
+	// Children of the route.
+	Children []*Route
 }
 
 func (r *Route) String() string {

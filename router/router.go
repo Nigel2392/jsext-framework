@@ -13,6 +13,7 @@ import (
 // Router is the main router struct.
 type Router struct {
 	routes            []*routes.Route
+	lastRoute         *routes.Route
 	skipTrailingSlash bool
 	nameToTitle       bool
 	onErr             func(err error)

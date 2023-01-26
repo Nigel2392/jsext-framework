@@ -158,6 +158,9 @@ func (r *Router) Handle(u *url.URL) {
 				return //false
 			}
 		}
+		if r.lastRoute != nil && r.lastRoute.OnLeave != nil {
+			r.lastRoute.OnLeave(vars, u)
+		}
 		if r.onPageChange != nil {
 			r.onPageChange(vars, u)
 		}

@@ -3,7 +3,7 @@
       "GOARCH": "wasm",
       "GOOS": "js"
     },
-    "workbench.colorTheme": "Default Dark+" ,
+    "workbench.colorTheme": "2077" ,
     "go.buildFlags": [
       "-tags=!tinygo"
     ]

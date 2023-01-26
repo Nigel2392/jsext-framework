@@ -19,6 +19,7 @@ var RT_PREFIX_EXTERNAL = "external:"
 
 type HashRouter struct {
 	routes          map[string]*routes.Route
+	lastRoute       *routes.Route
 	nameToTitle     bool
 	onErr           func(err error)
 	onLoad          func()
@@ -107,22 +108,32 @@ func (r *HashRouter) Match(hash string) (*routes.Route, bool) {
 func (r *HashRouter) Handle(hash string) {
 	var rt, ok = r.Match(hash)
 	if !ok {
-		r.Throw(404)
-		return
+		var err = rterr.NewError(404, "no route found for "+hash)
+		if r.onErr == nil {
+			panic(err)
+		} else {
+			r.onErr(error(err))
+			return //false
+		}
 	}
 	if r.onPageChange != nil {
 		r.onPageChange(nil, nil)
 	}
-	for _, middleware := range r.middlewares {
-		if !middleware(nil, nil, rt, r) {
-			return
-		}
+	if r.lastRoute != nil && r.lastRoute.OnLeave != nil {
+		r.lastRoute.OnLeave(nil, nil)
 	}
 	if rt.Callable != nil {
-		rt.Callable(nil, nil)
-	}
-	if r.afterPageChange != nil {
-		r.afterPageChange(nil, nil)
+		go func() {
+			for _, m := range r.middlewares {
+				if !m(nil, nil, rt, r) {
+					return
+				}
+			}
+			rt.Callable(nil, nil)
+			if r.afterPageChange != nil {
+				r.afterPageChange(nil, nil)
+			}
+		}()
 	}
 	if r.nameToTitle {
 		jsext.Document.Set("title", rt.Name)
