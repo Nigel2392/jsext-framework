@@ -1,11 +1,11 @@
 # JSExt!
 
-Golang Wasm extension for easy JS interop.
+Golang WebAssembly client framework, with support for TinyGO.
 
 ## Installation
 Easily install  with the following command:
 ```
-go get github.com/Nigel2392/jsext@vX.X.X.X
+go get github.com/Nigel2392/jsext-framework@vX.X.X.X
 ```
 
 Please check the tags for the latest version, we use an unconventional versioning system, which pkg.go.dev does not like.

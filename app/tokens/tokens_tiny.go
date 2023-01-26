@@ -11,7 +11,7 @@ import (
 	"github.com/Nigel2392/jsext/requester/decoder"
 )
 
-/ Make an api call to the refresh URL, update both the access and refresh tokens.
+// Make an api call to the refresh URL, update both the access and refresh tokens.
 func (t *Token) Update() error {
 	var client = requester.NewAPICl
 	var client = requester.NewAPIClient()
