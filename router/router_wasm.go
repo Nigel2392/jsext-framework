@@ -147,6 +147,43 @@ func (r *Router) Run() {
 // Handle is the main router handler.
 // This function is called by the router to match and handle a route.
 func (r *Router) Handle(u *url.URL) {
+	if len(r.routes) == 0 {
+		var style = jsext.CreateElement("style")
+		style.Set("type", "text/css")
+		style.Set("id", "jsext-style")
+		style.Set("innerHTML", `
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgb(85,34,195);
+			background: linear-gradient(0deg, rgba(85,34,195,0.40940126050420167) 0%, rgba(146,0,255,1) 100%);
+			flex-direction: column;
+			font-family: sans-serif;
+			height: 100vh;
+			font-size: 1.5rem;
+		}
+		body h1 {
+			color: white;
+			font-family: sans-serif;
+			font-size: 2em;
+			margin: 0;
+		}
+		body p {
+			color: white;
+			font-family: sans-serif;
+			font-size: 1.5rem;
+		}
+		`)
+		var header = jsext.CreateElement("h1")
+		header.InnerHTML("Welcome to JSExt!")
+		var paragraph = jsext.CreateElement("p")
+		paragraph.InnerHTML("To get started, register some routes!")
+		jsext.Body.AppendChild(header)
+		jsext.Body.AppendChild(paragraph)
+		jsext.Body.AppendChild(style)
+		return
+	}
 	go func() {
 		var rt, vars, ok = r.Match(u.Path)
 		if !ok {
